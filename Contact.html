@@ -2,123 +2,154 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Our Team</title>
+    <title>Our Project Team</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        /* ===== RESET ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
             font-family: Arial, sans-serif;
-            background:
-                radial-gradient(circle at top, rgba(2,6,23,0.7), rgba(2,6,23,0.95)),
-                url("bg4.jpg") center/cover no-repeat fixed;
-            color: #f9fafb;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
         }
 
-        .wrapper {
-            max-width: 900px;
-            width: 100%;
-            background: rgba(15,23,42,0.9);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 18px 40px rgba(0,0,0,0.8);
-            border: 1px solid rgba(148,163,184,0.4);
-        }
-
-        .title {
+        /* ===== PROJECT TEAM SECTION ===== */
+        .team-section {
             text-align: center;
-            margin-bottom: 10px;
+            padding: 60px 20px;
+            background: radial-gradient(circle at top, #050816, #02040a 60%, #000000);
+            color: #ffffff;
         }
 
-        .title h1 {
-            font-size: 26px;
+        .team-section h2 {
+            font-size: 28px;
+            margin-bottom: 24px;
             letter-spacing: 1px;
         }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 20px;
-            margin-top: 25px;
-        }
-
-        .card {
-            background: radial-gradient(circle at top left,
-                        rgba(148,163,184,0.25),
-                        rgba(15,23,42,0.95));
-            border-radius: 18px;
-            padding: 16px;
+        .team-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.75);
+            border-radius: 20px;
+            padding: 25px 22px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.85);
             display: flex;
-            gap: 14px;
-            align-items: center;
-            border: 1px solid rgba(148,163,184,0.6);
-            box-shadow: 0 14px 30px rgba(0,0,0,0.8);
-            transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.9);
-            border-color: red;
+        .team-card {
+            background: rgba(8, 16, 32, 0.95);
+            border-radius: 16px;
+            padding: 18px 20px;
+            width: 350px;
+            border: 1px solid #00ff6e;
+            box-shadow: 0 0 12px rgba(42, 13, 231, 0.897);
+            text-align: left;
+            transition: transform 0.25s, box-shadow 0.25s;
         }
 
-        .photo-wrap {
-            flex-shrink: 0;
-            width: 110px;
-            height: 110px;
-            border-radius: 18px;
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 0 18px rgba(255, 0, 0, 0.7);
+        }
+
+        /* ===== IMAGE BOX 300x250 ===== */
+        .photo-box {
+            width: 300px;
+            height: 250px;
+            margin-bottom: 10px;
+            border-radius: 10px;
             overflow: hidden;
-            border: 2px solid rgba(34,197,94,0.7);
+            border: 2px solid #ff00f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto; /* image center in card */
         }
 
-        .photo-wrap img {
+        .photo-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .info h2 { font-size: 18px; }
-        .role {
-            font-size: 12px;
-            margin-bottom: 6px;
-            color: #bbf7d0;
-            text-transform: uppercase;
+        /* leader pic adjust (thoda upar se focus) */
+        .team-card.leader .photo-box img {
+            object-position: top;
         }
 
-        .info p { font-size: 13px; margin-bottom: 4px; }
-        .label { font-weight: bold; }
+        .team-card h3 {
+            font-size: 18px;
+            margin-bottom: 6px;
+            color: #00ff99;
+        }
 
-        .contact a {
-            color: #22c55e;
-            text-decoration: none;
+        .team-card p {
+            font-size: 12px;
+            margin: 4px 0;
+            color: #e4e4e4;
+        }
+
+        .team-card p span {
+            font-weight: bold;
+            color: #a8ffce;
         }
 
         /* ===== REVIEW SECTION ===== */
-        .review-box {
-            margin-top: 30px;
-            padding: 20px;
-            border-radius: 18px;
-            background: radial-gradient(circle at top left,
-                        rgba(34,197,94,0.25),
-                        rgba(15,23,42,0.95));
-            border: 1px solid rgba(34,197,94,0.6);
-            box-shadow: 0 14px 30px rgba(0,0,0,0.8);
+        .review-section {
+            padding: 40px 20px 60px;
+            background: radial-gradient(circle at bottom, #020617, #000000 70%);
+            color: #f9fafb;
         }
 
-        .review-box h2 {
+        .review-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(3,7,18,0.92);
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.9);
+            border: 1px solid rgba(148,163,184,0.4);
+        }
+
+        .review-wrapper h2 {
             text-align: center;
             margin-bottom: 10px;
-            font-size: 20px;
+            font-size: 22px;
+            letter-spacing: 0.5px;
+        }
+
+        .review-subtitle {
+            text-align: center;
+            font-size: 13px;
+            color: #9ca3af;
+            margin-bottom: 18px;
+        }
+
+        .reviewer-info {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        .reviewer-info input {
+            border-radius: 999px;
+            border: 1px solid rgba(148,163,184,0.6);
+            padding: 8px 12px;
+            background: rgba(15,23,42,0.9);
+            color: #f9fafb;
+            outline: none;
+        }
+
+        .reviewer-info input::placeholder {
+            color: #9ca3af;
         }
 
         .stars {
@@ -140,7 +171,6 @@
             color: #facc15;
         }
 
-        /* selected rating (click ke baad) */
         .stars span.selected {
             color: #facc15;
         }
@@ -178,7 +208,6 @@
             box-shadow: 0 0 18px rgba(34,197,94,0.9);
         }
 
-        /* submit animation */
         .submit-btn.pulse {
             animation: btnPulse 0.4s ease;
         }
@@ -189,41 +218,18 @@
             100% { transform: scale(1); box-shadow: 0 0 0 rgba(34,197,94,0.0); }
         }
 
-        /* ===== REVIEWER DETAILS ===== */
-        .reviewer-info {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 10px;
-            margin-bottom: 12px;
-            font-size: 13px;
-        }
-
-        .reviewer-info input {
-            border-radius: 999px;
-            border: 1px solid rgba(148,163,184,0.6);
-            padding: 8px 12px;
-            background: rgba(15,23,42,0.9);
-            color: #f9fafb;
-            outline: none;
-        }
-
-        .reviewer-info input::placeholder {
-            color: #9ca3af;
-        }
-
-        /* saved reviews list */
         .saved-reviews {
             margin-top: 18px;
             border-top: 1px solid rgba(148,163,184,0.4);
             padding-top: 12px;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
         }
 
         .review-item {
             padding: 8px 10px;
             border-radius: 10px;
-            background: rgba(15,23,42,0.9);
+            background: rgba(15,23,42,0.95);
             border: 1px solid rgba(148,163,184,0.4);
             font-size: 13px;
             margin-bottom: 8px;
@@ -245,55 +251,86 @@
             font-size: 14px;
         }
 
+        .review-item small {
+            color: #9ca3af;
+            font-size: 11px;
+        }
+
+        @media (max-width: 800px) {
+            .team-card {
+                width: 100%;
+            }
+            .photo-box {
+                width: 100%;
+                max-width: 320px;
+            }
+        }
+
         @media (max-width: 700px) {
-            .team-grid { grid-template-columns: 1fr; }
-            .card { flex-direction: column; text-align: center; }
-            .reviewer-info { grid-template-columns: 1fr; }
+            .reviewer-info {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="wrapper">
-    <div class="title">
-        <h1>Our Project Team</h1>
-    </div>
+<!-- ====== PROJECT TEAM SECTION ====== -->
+<section id="team" class="team-section">
+    <div class="container">
+        <h2>Our Project Team</h2>
 
-    <div class="team-grid">
-        <div class="card">
-            <div class="photo-wrap"><img src="leader.jpeg" alt="Team Leader"></div>
-            <div class="info">
-                <h2>Krrish Kumar</h2>
-                <div class="role">Team Leader</div>
-                <p><span class="label">Branch:</span> B.Tech CSE(AI & ML)</p>
-                <p><span class="label">College:</span> Ganpat University</p>
-                <p><span class="label">Skills:</span> HTML, CSS, JavaScript, Project Manegment</p>
+        <div class="team-container">
+
+            <!-- MEMBER 1 (LEADER) -->
+            <div class="team-card leader">
+                <div class="photo-box">
+                    <img src="leader.jpeg" alt="Team Member 1">
+                </div>
+                <h3>Krrish Kumar</h3>
+                <p><span>T. No:</span> T25162201060</p>
+                <p><span>Branch:</span> B.Tech CSE (AI & ML)</p>
+                <p><span>Batch:</span> 2025–2029</p>
+                <p><span>College:</span> Ganpat University</p>
+                <p><span>Skills:</span> HTML, Web Design, JS, C, Project Management.</p>
+                <p><span>Phone:</span> +91-7079629754</p>
+                <p><span>Email:</span> krrishk148@gmail.com</p>
             </div>
-        </div>
 
-        <div class="card">
-            <div class="photo-wrap"><img src="member.jpeg" alt="Team Member"></div>
-            <div class="info">
-                <h2>Saumya Sachin</h2>
-                <div class="role">Team Member</div>
-                <p><span class="label">Branch:</span> B.Tech CSE(AI & ML)</p>
-                <p><span class="label">College:</span> Ganpat University</p>
-                <p><span class="label">Skills:</span> Web Design, Documentation</p>
+            <!-- MEMBER 2 -->
+            <div class="team-card">
+                <div class="photo-box">
+                    <img src="member.jpeg" alt="Team Member 2">
+                </div>
+                <h3>NITISH KUMAR</h3>
+                <p><span>T. No:</span> T25162201068</p>
+                <p><span>Branch:</span> B.Tech CSE (AI & ML)</p>
+                <p><span>Batch:</span> 2025–2029</p>
+                <p><span>College:</span> Ganpat University</p>
+                <p><span>Skills:</span> CSS, Java Script, Documention.</p>
+                <p><span>Phone:</span> +91-7667631128</p>
+                <p><span>Email:</span> sachin121@gmail.com</p>
             </div>
+
         </div>
     </div>
+</section>
 
-    <!-- REVIEW & RATING -->
-    <div class="review-box">
+<!-- ====== REVIEW SECTION ====== -->
+<section class="review-section">
+    <div class="review-wrapper">
         <h2>Give Your Review</h2>
+        <p class="review-subtitle">Please share your honest feedback about our project and team.</p>
 
         <!-- Reviewer full details -->
         <div class="reviewer-info">
-            <input type="text" id="reviewerName" placeholder="Your Name">
+            <input type="text" id="reviewerName" placeholder="Your Full Name">
             <input type="email" id="reviewerEmail" placeholder="Your Email">
-            <input type="text" id="reviewerExtra" placeholder="Your Phone / Class">
+            <input type="text" id="reviewerExtra" placeholder="Your Phone / Class / Designation">
         </div>
 
+        <!-- Rating stars -->
         <div class="stars" id="starContainer">
             <span data-value="1">★</span>
             <span data-value="2">★</span>
@@ -301,13 +338,15 @@
             <span data-value="4">★</span>
             <span data-value="5">★</span>
         </div>
+
+        <!-- Review text -->
         <textarea id="reviewText" placeholder="Write your feedback here..."></textarea>
         <button class="submit-btn" id="submitReview">Submit Review</button>
 
-        <!-- saved reviews list -->
+        <!-- Saved reviews list -->
         <div class="saved-reviews" id="savedReviews"></div>
     </div>
-</div>
+</section>
 
 <script>
     // STAR SELECTABLE LOGIC
@@ -318,7 +357,6 @@
         star.addEventListener('click', () => {
             selectedRating = index + 1;
 
-            // remove + add selected class
             stars.forEach((s, i) => {
                 if (i <= index) {
                     s.classList.add('selected');
@@ -386,7 +424,7 @@
         submitBtn.classList.add('pulse');
         setTimeout(() => submitBtn.classList.remove('pulse'), 400);
 
-        // reset form
+        // reset form (sirf feedback & stars reset, details optional rakhe)
         document.getElementById('reviewText').value = '';
         selectedRating = 0;
         stars.forEach(s => s.classList.remove('selected'));
