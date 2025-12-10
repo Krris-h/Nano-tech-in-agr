@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Farmer Guide – Nano Fertilizer Algorithm & Calculator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ================= BACKGROUND IMAGE ================= */
+body{
+    font-family:Arial,sans-serif;
+    color:#f5f7fb;
+    line-height:1.6;
+    background:
+        radial-gradient(circle at top, rgba(0,0,0,.55), rgba(0,0,0,.92)),
+        url("bg6.jpg") center/cover no-repeat fixed;
+    overflow-x:hidden;
+}
+
+/* ================= DNA BACKGROUND LAYER ================= */
+.bg-dna{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.dna{
+    position:absolute;
+    top:-25%;
+    width:6px;
+    height:150%;
+    background:linear-gradient(
+        to bottom,
+        transparent,
+        #00ff88,
+        #00c96b,
+        #00ff88,
+        transparent
+    );
+    opacity:.45;
+    animation:dnaMove linear infinite;
+}
+
+.dna::before,
+.dna::after{
+    content:"";
+    position:absolute;
+    width:14px;
+    height:14px;
+    border-radius:50%;
+    background:#00ff88;
+    left:-4px;
+    animation:dnaDot 2.8s ease-in-out infinite;
+}
+
+.dna::after{
+    left:auto;
+    right:-4px;
+    animation-delay:1.4s;
+}
+
+.dna:nth-child(1){left:10%;animation-duration:11s}
+.dna:nth-child(2){left:24%;animation-duration:9s}
+.dna:nth-child(3){left:38%;animation-duration:13s}
+.dna:nth-child(4){left:52%;animation-duration:10s}
+.dna:nth-child(5){left:68%;animation-duration:12s}
+.dna:nth-child(6){left:84%;animation-duration:9.5s}
+
+@keyframes dnaMove{
+    from{transform:translateY(-20%) rotate(8deg)}
+    to{transform:translateY(20%) rotate(-8deg)}
+}
+
+@keyframes dnaDot{
+    0%{transform:translateY(0) scale(.6)}
+    50%{transform:translateY(55px) scale(1)}
+    100%{transform:translateY(0) scale(.6)}
+}
+
+/* ================= ORIGINAL CSS (YOUR LAYOUT) ================= */
+
+a{text-decoration:none;color:inherit}
+.container{width:90%;max-width:1100px;margin:0 auto}
+
+header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(3,10,14,.95);
+    box-shadow:0 2px 16px rgba(0,0,0,.9);
+    backdrop-filter:blur(14px);
+}
+
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.nav-left{display:flex;align-items:center;gap:10px}
+
+.logo-circle{
+    width:38px;height:38px;border-radius:50%;
+    background:linear-gradient(135deg,#25d366,#0b8457);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:bold;color:#fff
+}
+
+.logo-text{
+    font-size:15px;
+    color:#e6f7ff;
+}
+.logo-text span{
+    display:block;
+    font-size:11px;
+    color:#a9c4ce;
+}
+
+nav ul{list-style:none;display:flex;gap:14px;font-size:13px}
+
+nav a{
+    padding:6px 12px;border-radius:999px;
+    color:#e6edf7;
+    transition:.2s;
+}
+
+nav a:hover{
+    background:rgba(248,113,113,.22);
+    box-shadow:0 0 14px rgba(248,113,113,.7);
+    transform:translateY(-1px);
+}
+
+nav a.active{
+    background:rgba(197,255,113,.22);
+    box-shadow:0 0 14px rgba(197,255,113,.7);
+    color:#eaffb6;
+}
+
+main{padding:40px 0 30px}
+
+/* Titles / text helpers (for your existing classes) */
+.section-title{
+    font-size:24px;
+    text-align:center;
+    margin-bottom:8px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+.section-subtitle{
+    font-size:13px;
+    text-align:center;
+    max-width:720px;
+    margin:0 auto 20px;
+    color:#dbe5f3;
+}
+.badge{
+    display:inline-block;
+    font-size:11px;
+    padding:3px 8px;
+    border-radius:999px;
+    background:rgba(37,211,102,.18);
+    border:1px solid rgba(157,245,106,.7);
+    color:#9df56a;
+    margin-bottom:6px;
+}
+.algo-step{margin-bottom:4px;font-size:13px}
+h3{font-size:18px;margin-bottom:8px;color:#c5ff71}
+
+/* ================= NEW PHOTO STRIP FOR PICS ================= */
+.photo-row{
+    margin:18px 0 10px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+    gap:14px;
+}
+
+.photo-card{
+    position:relative;
+    border-radius:22px;
+    overflow:hidden;
+    background:linear-gradient(135deg,rgba(0,0,0,.7),rgba(22,45,36,.9));
+    box-shadow:0 16px 40px rgba(0,0,0,.9);
+    border:1px solid rgba(0,255,136,.25);
+    transform:translateY(0);
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+}
+
+.photo-card img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
+    display:block;
+    opacity:.92;
+}
+
+.photo-card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at top,rgba(0,255,136,.35),transparent 60%);
+    mix-blend-mode:screen;
+    opacity:.6;
+    pointer-events:none;
+}
+
+.photo-tag{
+    position:absolute;
+    left:10px;
+    bottom:10px;
+    padding:3px 9px;
+    border-radius:999px;
+    font-size:11px;
+    background:rgba(0,0,0,.7);
+    border:1px solid rgba(0,255,136,.7);
+    color:#c5ffeb;
+}
+
+.photo-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 24px 55px rgba(0,0,0,.95);
+    border-color:rgba(0,255,136,.9);
+}
+
+/* ================= LAYOUT / FORMS / BUTTONS ================= */
+
+.two-col{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:20px
+}
+
+.glass{
+    background:rgba(6,20,24,.94);
+    border-radius:22px;
+    padding:18px;
+    border:1px solid rgba(255,255,255,.18);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    transition:.25s;
+    box-shadow:0 18px 40px rgba(0,0,0,.9);
+    font-size:14px;
+}
+
+.glass:hover{
+    transform:translateY(-4px);
+    border-color:#f87171;
+    box-shadow:0 0 22px rgba(248,113,113,.85);
+}
+
+ul{margin-left:18px;margin-bottom:8px}
+li{margin-bottom:4px}
+
+.calc-row{
+    display:grid;
+    grid-template-columns:1.3fr .7fr;
+    gap:8px;
+    margin-bottom:10px;
+}
+
+label{font-size:13px}
+
+input,select{
+    width:100%;
+    padding:7px 10px;
+    border-radius:999px;
+    border:1px solid #92a7b8;
+    background:rgba(2,10,15,.9);
+    color:#f5f7fb;
+    font-size:13px;
+    outline:none;
+}
+
+input:focus,select:focus{
+    border-color:#f97373;
+    box-shadow:0 0 0 1px rgba(248,113,113,.7);
+}
+
+.btn{
+    padding:8px 16px;border-radius:999px;
+    border:none;background:#c5ff71;
+    color:#042c18;cursor:pointer;
+    font-size:13px;
+    box-shadow:0 10px 26px rgba(0,0,0,.85);
+    margin-top:6px;
+    transition:transform .15s, box-shadow .15s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 30px rgba(248,113,113,.9);
+}
+
+.btn-back{
+    display:inline-block;
+    margin-top:16px;
+    border-radius:999px;
+    border:1px solid #c5ff71;
+    padding:7px 16px;
+    font-size:13px;
+    background:transparent;
+    color:#eaffb6;
+    transition:background .2s, transform .15s, box-shadow .2s, border-color .2s;
+}
+
+.btn-back:hover{
+    background:#f97373;
+    color:#1f0202;
+    border-color:#fecaca;
+    transform:translateY(-2px);
+    box-shadow:0 0 16px rgba(248,113,113,.9);
+}
+
+.result-box{
+    margin-top:10px;
+    border-radius:18px;
+    padding:10px 12px;
+    font-size:13px;
+    background:rgba(2,13,16,.95);
+    border:1px dashed rgba(197,255,113,.7);
+}
+
+footer{
+    background:rgba(1,7,10,.95);
+    text-align:center;
+    padding:14px;
+    font-size:12px;
+    color:#cbd5e1;
+    box-shadow:0 -8px 26px rgba(0,0,0,.9);
+}
+
+@media(max-width:800px){
+    .two-col{grid-template-columns:1fr}
+    nav ul{flex-wrap:wrap;justify-content:flex-end}
+    .calc-row{grid-template-columns:1fr}
+    .photo-row{grid-template-columns:1fr 1fr}
+}
+@media(max-width:500px){
+    .photo-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav-inner">
+        <div class="nav-left">
+            <div class="logo-circle">N</div>
+            <div class="logo-text">
+                Farmer Guide
+                <span>Algorithm & Calculator</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="nano-fertilizers.html">Nano Fertilizers</a></li>
+                <li><a href="farmer-guide.html" class="active">Farmer Guide</a></li>
+                <li><a href="impact-policy.html">Impact & Policy</a></li>
+                <li><a href="resources-contact.html">Resources</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ✅ DNA BACKGROUND -->
+<div class="bg-dna">
+    <div class="dna"></div>
+    <div class="dna"></div>
+    <div class="dna"></div>
+    <div class="dna"></div>
+    <div class="dna"></div>
+    <div class="dna"></div>
+</div>
+
+<main>
+    <section class="container">
+        <h2 class="section-title">Farmer Usage Algorithm</h2>
+        <p class="section-subtitle">
+            Yaha pe ek simple algorithm diya gaya hai jisse farmer decide kar sakta hai
+            ki nano fertilizer kaise aur kitna use kare. Saath hi ek calculator bhi hai
+            jo normal vs nano dose compare karta hai.
+        </p>
+
+        <!-- ✅ NEW PHOTO STRIP FOR BEST VIBE -->
+        <div class="photo-row">
+            <div class="photo-card">
+                <img src="image1.jpg" alt="Nano fertilizer spraying on green field">
+                <span class="photo-tag">Field Spray</span>
+            </div>
+            <div class="photo-card">
+                <img src="bg5.jpg" alt="Healthy leaf close-up">
+                <span class="photo-tag">Smart Farming</span>
+            </div>
+            <div class="photo-card">
+                <img src="bg7.jpg" alt="Farmer training on nano fertilizer">
+                <span class="photo-tag">Farmer Training</span>
+            </div>
+            <div class="photo-card">
+                <img src="bg8.jpg" alt="Farmer training on nano fertilizer">
+            </div>
+        </div>
+        <!-- You can change the image file names above to your own pics -->
+
+        <div class="two-col">
+            <div class="glass">
+                <span class="badge">Algorithm (Pseudo-code style)</span>
+                <h3>Step-by-step Algorithm for Using Nano Fertilizers</h3>
+
+                <p class="algo-step"><strong>Step 1:</strong> Identify crop type and recommended fertilizer dose
+                    (kg/acre ya kg/ha) from govt / university recommendation.</p>
+                <p class="algo-step"><strong>Step 2:</strong> Check soil test report (agar available ho) – N, P, K
+                    aur micronutrient status dekhna.</p>
+                <p class="algo-step"><strong>Step 3:</strong> Decide nano fertilizer product
+                    (N, P, K, Zn, etc.) and its efficiency factor (e.g. 0.5 or 0.7 of normal dose).</p>
+                <p class="algo-step"><strong>Step 4:</strong> Calculate required nano fertilizer dose
+                    using formula (niche calculator me diya hai).</p>
+                <p class="algo-step"><strong>Step 5:</strong> Choose method of application:
+                    basal, top dressing, foliar spray or fertigation.</p>
+                <p class="algo-step"><strong>Step 6:</strong> Apply nano fertilizer as per
+                    product label – timing and dilution strictly follow karein.</p>
+                <p class="algo-step"><strong>Step 7:</strong> Observe crop response
+                    (colour, growth, yield components) and record data.</p>
+                <p class="algo-step"><strong>Step 8:</strong> Next season ke liye dose fine-tune karein
+                    based on recorded performance and advisory.</p>
+
+                <div style="margin-top:10px;font-size:13px;">
+                    <strong>NOTE:</strong> Nano fertilizers ko hamesha certified products ki list
+                    se hi choose karna chahiye aur label instructions + local expert advice follow karna zaroori hai.
+                </div>
+
+                <a href="index.html" class="btn-back">⬅ Back to Home</a>
+            </div>
+
+            <div class="glass">
+                <span class="badge">Tool</span>
+                <h3>Normal vs Nano Fertilizer Calculator</h3>
+
+                <p style="font-size:13px;margin-bottom:6px;">
+                    Ye calculator sirf educational purpose ke liye hai. Field me apply karne se pehle
+                    official recommendation zaroor follow karein.
+                </p>
+
+                <div class="calc-row">
+                    <div>
+                        <label for="area">Cultivated Area</label>
+                    </div>
+                    <div>
+                        <input type="number" id="area" placeholder="e.g. 1 (acre)">
+                    </div>
+                </div>
+
+                <div class="calc-row">
+                    <div>
+                        <label for="unit">Unit</label>
+                    </div>
+                    <div>
+                        <select id="unit">
+                            <option value="acre">Acre</option>
+                            <option value="hectare">Hectare</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="calc-row">
+                    <div>
+                        <label for="dose">Recommended Normal Fertilizer Dose (kg / unit)</label>
+                    </div>
+                    <div>
+                        <input type="number" id="dose" placeholder="e.g. 120">
+                    </div>
+                </div>
+
+                <div class="calc-row">
+                    <div>
+                        <label for="efficiency">Nano Efficiency Factor</label>
+                        <div style="font-size:11px;color:#cdd7e7;margin-top:2px;">
+                            (0.5 = 50% of normal dose, 0.7 = 70% of normal dose)
+                        </div>
+                    </div>
+                    <div>
+                        <select id="efficiency">
+                            <option value="0.5">0.5 (High efficiency)</option>
+                            <option value="0.6">0.6</option>
+                            <option value="0.7">0.7</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn" id="btnCalc">Calculate Dose</button>
+
+                <div class="result-box" id="resultBox">
+                    Enter data and click <strong>Calculate</strong> to see the result.
+                </div>
+
+                <div class="result-box" style="margin-top:8px;">
+                    <strong>Algorithm used in calculator:</strong><br>
+                    1. Read area (A), normal dose per unit (D), efficiency factor (E).<br>
+                    2. Normal requirement = A × D.<br>
+                    3. Nano requirement = Normal requirement × E.<br>
+                    4. Saving = Normal requirement − Nano requirement.<br>
+                    5. Show all three values in table form.
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Farmer Guide – Nano Fertilizer Algorithm & Calculator • For training & awareness.
+</footer>
+
+<script>
+    // Fertilizer dose calculator
+    const btnCalc = document.getElementById('btnCalc');
+    const resultBox = document.getElementById('resultBox');
+
+    btnCalc.addEventListener('click', () => {
+        const area = parseFloat(document.getElementById('area').value);
+        const dose = parseFloat(document.getElementById('dose').value);
+        const eff = parseFloat(document.getElementById('efficiency').value);
+        const unit = document.getElementById('unit').value;
+
+        if (isNaN(area) || isNaN(dose) || area <= 0 || dose <= 0) {
+            resultBox.innerHTML = '<span style="color:#fca5a5;">Please enter valid positive numbers for area and dose.</span>';
+            return;
+        }
+
+        const normalReq = area * dose;
+        const nanoReq = normalReq * eff;
+        const saving = normalReq - nanoReq;
+
+        resultBox.innerHTML = `
+            <strong>Result (approx.):</strong><br>
+            <table style="width:100%;border-collapse:collapse;font-size:13px;margin-top:4px;">
+                <tr>
+                    <td style="padding:4px;border-bottom:1px solid #243340;">Area</td>
+                    <td style="padding:4px;border-bottom:1px solid #243340;">${area.toFixed(2)} ${unit}</td>
+                </tr>
+                <tr>
+                    <td style="padding:4px;border-bottom:1px solid #243340;">Normal Fertilizer Required</td>
+                    <td style="padding:4px;border-bottom:1px solid #243340;">${normalReq.toFixed(2)} kg</td>
+                </tr>
+                <tr>
+                    <td style="padding:4px;border-bottom:1px solid #243340;">Nano Fertilizer Required</td>
+                    <td style="padding:4px;border-bottom:1px solid #243340;">${nanoReq.toFixed(2)} kg</td>
+                </tr>
+                <tr>
+                    <td style="padding:4px;">Approx. Saving in Quantity</td>
+                    <td style="padding:4px;">${saving.toFixed(2)} kg</td>
+                </tr>
+            </table>
+            <div style="margin-top:6px;">
+                <em>Note:</em> Actual recommended dose may differ as per product guidelines and crop stage.
+            </div>
+        `;
+    });
+</script>
+
+</body>
+</html>

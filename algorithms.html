@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nano Fertilizers – Algorithms & Flowcharts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #f5f7fb;
+            min-height: 100vh;
+            background:
+                linear-gradient(135deg, rgba(2,12,20,0.9), rgba(5,25,15,0.9)),
+                url("bg6.jpg") center/cover no-repeat fixed;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .page-overlay {
+            min-height: 100vh;
+            background: radial-gradient(circle at top, rgba(0,0,0,0.55), rgba(0,0,0,0.9));
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        /* ===== NAVBAR ===== */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(5,8,15,0.9);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .nav-left {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .logo-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,#25d366,#0b8457);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-text {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 11px;
+            color: #c4d3ff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            font-size: 13px;
+        }
+
+        .nav-links a {
+            padding: 6px 12px;
+            border-radius: 999px;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(197,255,113,0.18);
+        }
+
+        .nav-links a.active {
+            background: rgba(197,255,113,0.3);
+            box-shadow: 0 0 14px rgba(197,255,113,0.8);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 40px 0 20px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 11px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.6);
+            margin-bottom: 10px;
+        }
+
+        .hero-title {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .hero-title span {
+            color: #c5ff71;
+        }
+
+        .hero-text {
+            font-size: 14px;
+            margin-bottom: 14px;
+            color: #e4e9ff;
+        }
+
+        .hero-points {
+            font-size: 13px;
+            margin-left: 18px;
+        }
+
+        .hero-points li {
+            margin-bottom: 5px;
+        }
+
+        /* ===== MAIN ===== */
+        section.main {
+            padding: 30px 0 50px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+
+        .section-header p {
+            font-size: 13px;
+            color: #d2dcff;
+        }
+
+        /* ===== WATER DROPLET CARDS ===== */
+        .algo-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .algo-card {
+            padding: 16px;
+            border-radius: 24px;
+            background: radial-gradient(circle at top left,
+                        rgba(255,255,255,0.22),
+                        rgba(6,10,18,0.9));
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.9);
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .algo-card small {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(37,211,102,0.2);
+            border: 1px solid rgba(157,245,106,0.7);
+        }
+
+        .algo-card h3 {
+            margin: 8px 0 6px;
+            font-size: 16px;
+            color: #c07151ca;
+        }
+
+        .algo-card p {
+            font-size: 13px;
+        }
+
+        /* PURE HOVER GLOW */
+        .algo-card:hover {
+            transform: translateY(-5px);
+            background: radial-gradient(circle at top left,
+                        rgba(197,255,113,0.3),
+                        rgba(5,9,18,0.95));
+            border-color: rgba(101, 72, 46, 0.9);
+            box-shadow:
+                0 0 22px rgba(197,255,113,0.9),
+                0 30px 65px rgba(0,0,0,1);
+        }
+
+        /* ===== DETAIL PANEL ===== */
+        .algo-detail {
+            padding: 20px;
+            border-radius: 24px;
+            background:
+                radial-gradient(circle at top left,
+                    rgba(255,255,255,0.15),
+                    rgba(3,6,12,0.95));
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 24px 55px rgba(0,0,0,0.95);
+            backdrop-filter: blur(18px);
+        }
+
+        .algo-detail h3 {
+            color: #a55828de;
+            margin-bottom: 6px;
+        }
+
+        .algo-detail p {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .algo-detail ol, 
+        .algo-detail ul {
+            font-size: 13px;
+            margin-left: 18px;
+            margin-bottom: 10px;
+        }
+
+        /* HIDE CODE BLOCKS */
+        .algo-detail code {
+            display: none;
+        }
+
+        footer {
+            padding: 14px 0;
+            font-size: 12px;
+            text-align: center;
+            background: rgba(3,5,10,0.95);
+            box-shadow: 0 -8px 24px rgba(0,0,0,0.9);
+        }
+
+        @media(max-width: 900px){
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .algo-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="page-overlay">
+
+<header>
+    <div class="container nav">
+        <div class="nav-left">
+            <div class="logo-circle">N</div>
+            <div class="logo-text">
+                Nano Agri Hub
+                <span>Algorithms & Flowcharts</span>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="nano-fertilizers.html">Nano Fertilizers</a>
+            <a href="farmer-guide.html">Farmer Guide</a>
+            <a href="impact-policy.html">Impact & Policy</a>
+            <a href="algorithms.html" class="active">Algorithms</a>
+            <a href="resources-contact.html">Resources</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <div class="hero-badge">PID002 • Nano Fertilizers</div>
+            <h1 class="hero-title">Algorithms for <span>Nano-Fertilizer</span> Use</h1>
+            <p class="hero-text">
+                Ye section project file ke <strong>Algorithm / Flowchart</strong> part ke liye hai.
+                Logic explain kiya gaya hai bina technical code expose kiye.
+            </p>
+            <ul class="hero-points">
+                <li>Decision-based fertilizer recommendation</li>
+                <li>Safe application workflow</li>
+                <li>Income & subsidy impact analysis</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="main">
+<div class="container">
+
+<div class="algo-grid">
+    <div class="algo-card" data-algo="1">
+        <small>Algorithm – 01</small>
+        <h3>Nano-Fertilizer Recommendation</h3>
+        <p>Soil test, crop type aur growth stage ke base par dose decide karta hai.</p>
+    </div>
+
+    <div class="algo-card" data-algo="2">
+        <small>Algorithm – 02</small>
+        <h3>Safe Application Procedure</h3>
+        <p>Uniform spraying aur environmental safety ensure karta hai.</p>
+    </div>
+
+    <div class="algo-card" data-algo="3">
+        <small>Algorithm – 03</small>
+        <h3>Yield & Subsidy Impact</h3>
+        <p>Farmer income aur govt subsidy saving track karta hai.</p>
+    </div>
+</div>
+
+<div class="algo-detail" id="detailBox">
+    <h3>Select any algorithm</h3>
+</div>
+
+</div>
+</section>
+
+<footer>
+    Nano Fertilizers • Algorithms & Flowcharts • Agriculture & Cooperation Dept
+</footer>
+
+</div>
+
+<script>
+const box = document.getElementById("detailBox");
+document.querySelectorAll(".algo-card").forEach(card=>{
+    card.onclick = ()=>{
+        const id = card.dataset.algo;
+        if(id=="1"){
+            box.innerHTML = "<h3>Algorithm 01 – Recommendation</h3><p>Crop, soil nutrients aur nano efficiency ke basis par required fertilizer amount calculate ki jati hai.</p><ul><li>Soil test analyse</li><li>Crop requirement check</li><li>Nano efficiency apply</li><li>Final dose recommend</li></ul>";
+        }
+        if(id=="2"){
+            box.innerHTML = "<h3>Algorithm 02 – Safe Application</h3><p>Weather check, safety gear aur correct dilution ke through safe application process follow hota hai.</p><ul><li>Weather verification</li><li>Spray preparation</li><li>Uniform application</li><li>Post-spray cleanup</li></ul>";
+        }
+        if(id=="3"){
+            box.innerHTML = "<h3>Algorithm 03 – Impact Tracking</h3><p>Yield comparison ke through farmer income gain aur government subsidy saving evaluate hoti hai.</p><ul><li>Baseline data</li><li>Current yield</li><li>Income calculation</li><li>Subsidy saving</li></ul>";
+        }
+    }
+});
+</script>
+
+</body>
+</html>

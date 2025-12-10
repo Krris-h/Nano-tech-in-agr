@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Resources & Feedback – Nano Fertilizers Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: radial-gradient(circle at top, #020e16 0%, #020509 45%, #000000 100%);
+            color: #f5f7fb;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(3, 10, 14, 0.95);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(14px);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25d366, #0b8457);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .logo-text {
+            font-size: 15px;
+            color: #e6f7ff;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 11px;
+            color: #a9c4ce;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+        }
+
+        nav a {
+            padding: 6px 12px;
+            border-radius: 999px;
+            color: #e6edf7;
+        }
+
+        nav a:hover {
+            background: rgba(37, 211, 102, 0.18);
+        }
+
+        nav a.active {
+            background: rgba(197, 255, 113, 0.22);
+            box-shadow: 0 0 14px rgba(197, 255, 113, 0.7);
+            color: #eaffb6;
+        }
+
+        main {
+            padding: 40px 0 30px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 20px;
+            color: #dbe5f3;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .glass {
+            background: rgba(6, 20, 24, 0.94);
+            border-radius: 22px;
+            padding: 18px 16px;
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.9),
+                0 0 0 1px rgba(255, 255, 255, 0.11);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            font-size: 14px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #c5ff71;
+        }
+
+        ul {
+            margin-left: 18px;
+            margin-bottom: 8px;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(37, 211, 102, 0.18);
+            border: 1px solid rgba(157, 245, 106, 0.7);
+            color: #9df56a;
+            margin-bottom: 6px;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #23313f;
+            padding: 8px 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .faq-answer {
+            font-size: 13px;
+            margin-top: 4px;
+            display: none;
+            color: #dde6f7;
+        }
+
+        .faq-question span {
+            font-size: 16px;
+        }
+
+        form {
+            display: grid;
+            gap: 10px;
+        }
+
+        label {
+            font-size: 13px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 7px 10px;
+            border-radius: 12px;
+            border: 1px solid #92a7b8;
+            background: rgba(2, 10, 15, 0.9);
+            color: #f5f7fb;
+            font-size: 13px;
+            outline: none;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #c5ff71;
+            box-shadow: 0 0 0 1px rgba(197, 255, 113, 0.6);
+        }
+
+        .btn {
+            border-radius: 999px;
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            background: #c5ff71;
+            color: #042c18;
+            box-shadow: 0 10px 26px rgba(0, 0, 0, 0.85);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .note {
+            font-size: 12px;
+            color: #d4dde9;
+        }
+
+        .msg-box {
+            margin-top: 6px;
+            font-size: 12px;
+        }
+
+        .links-list a {
+            color: #9de6ff;
+            text-decoration: underline;
+        }
+
+        footer {
+            background: rgba(1, 7, 10, 0.95);
+            color: #cbd5e1;
+            padding: 14px 0 10px;
+            font-size: 12px;
+            text-align: center;
+            box-shadow: 0 -8px 26px rgba(0, 0, 0, 0.9);
+        }
+
+        @media (max-width: 800px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav-inner">
+        <div class="nav-left">
+            <div class="logo-circle">N</div>
+            <div class="logo-text">
+                Resources & Feedback
+                <span>Nano Fertilizers Hub</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="nano-fertilizers.html">Nano Fertilizers</a></li>
+                <li><a href="farmer-guide.html">Farmer Guide</a></li>
+                <li><a href="impact-policy.html">Impact & Policy</a></li>
+                <li><a href="resources-contact.html" class="active">Resources</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="container">
+        <h2 class="section-title">Study Resources & Feedback</h2>
+        <p class="section-subtitle">
+            Yaha tumhe short notes, viva questions, FAQs aur feedback form milega.
+            Isko directly project file, PPT ya viva preparation ke liye use kar sakte ho.
+        </p>
+
+        <div class="grid-2">
+            <!-- Left: Notes & FAQ -->
+            <div class="glass">
+                <span class="badge">Short Notes</span>
+                <h3>Ready-made Points</h3>
+                <ul>
+                    <li>Nanofertilizers = nano-scale nutrient carriers (1–100 nm) with controlled release.</li>
+                    <li>Main goal: increase efficiency, reduce environmental pollution and improve soil health.</li>
+                    <li>Users: Farmers (primary), researchers, policymakers (secondary).</li>
+                    <li>Expected outcome: higher crop yield, better quality, higher net returns.</li>
+                    <li>Impact: less subsidy burden on government and ecological safety.</li>
+                </ul>
+
+                <h3 style="margin-top:12px;">Viva Questions</h3>
+                <ul>
+                    <li>Q: What is the size range of nanomaterials?<br>
+                        Ans: 1–100 nanometres.</li>
+                    <li>Q: Why are nano fertilizers called “magic bullets”?<br>
+                        Ans: Because they can deliver nutrients directly to plant targets with high efficiency and low losses.</li>
+                    <li>Q: Name two advantages of nano fertilizers.<br>
+                        Ans: Higher nutrient-use efficiency and lower environmental pollution.</li>
+                    <li>Q: Mention one risk related to nano fertilizers.<br>
+                        Ans: Possible toxicity and accumulation of nanoparticles in soil and food chain.</li>
+                </ul>
+
+                <h3 style="margin-top:12px;">FAQ</h3>
+                <div id="faqList">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Are nano fertilizers safe for humans?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Safety depends on product design and dose. Approved products are tested,
+                            but still, guidelines and protective measures follow karna zaroori hai.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can small farmers also use nano fertilizers?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Yes, lekin unhe sahi training, demo plots aur extension support milna chahiye.
+                            Dose and application method ko strictly follow karna important hai.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What crops are suitable for nano fertilizers?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Cereals, pulses, oilseeds, fruits, vegetables – almost all crops,
+                            but exact recommendation crop and region ke hisaab se change hoti hai.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="links-list" style="margin-top:12px;font-size:13px;">
+                    <span class="badge">Link</span>
+                    <p>
+                        Tum apna existing <strong>Nanotechnology in Agriculture</strong> single-page file yahan link
+                        kar sakte ho:
+                    </p>
+                    <ul>
+                        <li><a href="nano-agri-notes.html">Open Detailed Nano-Agri Notes (Your Old Page)</a></li>
+                        <li><a href="nano-agri-notes.pdf">Download Notes PDF (if available)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right: Feedback Form -->
+            <div class="glass">
+                <span class="badge">Feedback</span>
+                <h3>Share Your Feedback</h3>
+
+                <p class="note">
+                    Ye form sirf demo ke liye hai. Submit karne par data browser me hi handle hoga –
+                    koi real server call nahi ho raha.
+                </p>
+
+                <form id="feedbackForm">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Your name">
+                    </div>
+                    <div>
+                        <label for="role">Role (Farmer / Student / Other)</label>
+                        <input type="text" id="role" placeholder="e.g. Farmer">
+                    </div>
+                    <div>
+                        <label for="message">Feedback / Suggestions</label>
+                        <textarea id="message" placeholder="Write your feedback..."></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Feedback</button>
+                    <div id="msgBox" class="msg-box"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Resources & Feedback – Nano Fertilizers Hub • Built for learning & awareness.
+</footer>
+
+<script>
+    // ===== Simple FAQ Toggle =====
+    const faqItems = document.querySelectorAll('#faqList .faq-item');
+
+    faqItems.forEach(item => {
+        const q = item.querySelector('.faq-question');
+        const a = item.querySelector('.faq-answer');
+        const icon = q.querySelector('span:last-child');
+
+        q.addEventListener('click', () => {
+            const isOpen = a.style.display === 'block';
+            // Close all
+            faqItems.forEach(i => {
+                i.querySelector('.faq-answer').style.display = 'none';
+                i.querySelector('.faq-question span:last-child').textContent = '+';
+            });
+            // Toggle current
+            if (!isOpen) {
+                a.style.display = 'block';
+                icon.textContent = '−';
+            }
+        });
+    });
+
+    // ===== Feedback form (client-side demo) =====
+    const form = document.getElementById('feedbackForm');
+    const msgBox = document.getElementById('msgBox');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const role = document.getElementById('role').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !message) {
+            msgBox.style.color = '#fca5a5';
+            msgBox.textContent = 'Please fill at least your name and feedback message.';
+            return;
+        }
+
+        // For now we just show a success message.
+        msgBox.style.color = '#bbf7d0';
+        msgBox.textContent = 'Thank you, ' + name + '! Your feedback has been recorded (locally).';
+
+        // Optionally clear form
+        form.reset();
+    });
+</script>
+
+</body>
+</html>

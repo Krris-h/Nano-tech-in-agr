@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nano Fertilizers: A Promise for Future | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- INTERNAL CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #f5f7ff;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.9)),
+                url("bg1.jpg") center/cover no-repeat fixed;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .page-overlay {
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* BACKDROP JAB MENU OPEN HO */
+        .nav-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 5;
+            display: none;
+        }
+
+        .nav-backdrop.show {
+            display: block;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            background: rgba(5, 10, 20, 0.92);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            position: relative;
+            /* mobile menu ke liye */
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25d366, #0b8457);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            /* icon fix */
+        }
+
+        .logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 11px;
+            font-weight: normal;
+            color: #b9c3e6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 14px;
+            font-size: 13px;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 6px 12px;
+            border-radius: 999px;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 3px;
+            width: 0;
+            height: 2px;
+            background: #c5ff71;
+            border-radius: 999px;
+            transform: translateX(-50%);
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            background: rgba(197, 255, 113, 0.18);
+            transform: translateY(-1px);
+            box-shadow: 0 0 14px rgba(197, 255, 113, 0.5);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 60%;
+        }
+
+        .nav-links a.active {
+            background: rgba(197, 255, 113, 0.3);
+            box-shadow: 0 0 14px rgba(197, 255, 113, 0.8);
+        }
+
+        .hero {
+            padding: 60px 0 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            margin-bottom: 10px;
+            backdrop-filter: blur(6px);
+        }
+
+        .hero-title {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .hero-title span {
+            color: #c5ff71;
+        }
+
+        .hero-sub {
+            font-size: 14px;
+            margin-bottom: 16px;
+            max-width: 520px;
+            color: #e2e6ff;
+        }
+
+        .hero-list {
+            font-size: 13px;
+            margin-bottom: 18px;
+        }
+
+        .hero-list li {
+            margin-left: 18px;
+            margin-bottom: 4px;
+        }
+
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: gr;
+        }
+
+        .btn {
+            border-radius: 999px;
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.15s;
+        }
+
+        .btn-primary {
+            background: #c5ff71;
+            color: #05381f;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.8);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #ffffffaa;
+            color: #f5f7ff;
+        }
+
+        /* SPECIAL STYLE FOR "READ FULL NANO NOTES" BUTTON */
+        #btnNotes {
+            border-color: #c5ff71;
+            color: #c5ff71;
+        }
+
+        #btnNotes:hover {
+            background: #c5ff71;
+            color: #05381f;
+            box-shadow: 0 0 18px rgba(197, 255, 113, 0.9);
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        /* SAME STYLE FOR "OPEN FARMER MODULE" BUTTON */
+        #btnFarmer {
+            background: transparent;
+            border: 1px solid #c5ff71;
+            color: #c5ff71;
+            box-shadow: none;
+        }
+
+        #btnFarmer:hover {
+            background: #c5ff71;
+            color: #05381f;
+            box-shadow: 0 0 18px rgba(197, 255, 113, 0.9);
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.9);
+        }
+
+        /* ===== FIX: BACKDROP SHOULD NOT BLOCK MENU ===== */
+        .nav-backdrop {
+            pointer-events: auto;
+        }
+
+        .nav-links {
+            pointer-events: auto;
+        }
+
+        /* Mobile hover / tap feedback */
+        .nav-links a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-links a:active {
+            background: rgba(197, 255, 113, 0.35);
+            box-shadow: 0 0 18px rgba(197, 255, 113, 0.9);
+        }
+
+
+        /* WATER DROPLET CARDS */
+        section {
+            padding: 30px 0;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 6px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 22px;
+            color: #d5ddff;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .card-droplet {
+            position: relative;
+            padding: 18px 16px;
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at top left,
+                    rgba(255, 255, 255, 0.16),
+                    rgba(10, 15, 25, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, 0.9),
+                0 0 0 1px rgba(120, 200, 255, 0.18);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            overflow: hidden;
+            font-size: 13px;
+            transition:
+                box-shadow 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease,
+                transform 0.15s ease;
+        }
+
+        .card-droplet::before {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle,
+                    rgba(255, 255, 255, 0.45),
+                    transparent 60%);
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .card-droplet::after {
+            content: "";
+            position: absolute;
+            inset: 1px;
+            border-radius: 24px;
+            border: 1px solid rgba(197, 255, 113, 0.0);
+            box-shadow: 0 0 0 rgba(197, 255, 113, 0);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-droplet h3 {
+            font-size: 16px;
+            margin-bottom: 6px;
+            color: #c5ff71;
+        }
+
+        .card-droplet small {
+            display: block;
+            font-size: 11px;
+            opacity: 0.9;
+            margin-bottom: 6px;
+        }
+
+        .card-droplet ul {
+            margin-left: 18px;
+        }
+
+        .card-droplet li {
+            margin-bottom: 4px;
+        }
+
+        .card-droplet:hover {
+            transform: translateY(-4px) translateZ(0);
+            box-shadow:
+                0 24px 55px rgba(0, 0, 0, 0.95),
+                0 0 0 1px rgba(197, 255, 113, 0.45);
+            background:
+                radial-gradient(circle at top left,
+                    rgba(197, 255, 113, 0.20),
+                    rgba(5, 12, 6, 0.96));
+            border-color: rgba(197, 255, 113, 0.9);
+        }
+
+        .card-droplet:hover::after {
+            border-color: rgba(197, 255, 113, 0.7);
+            box-shadow: 0 0 24px rgba(197, 255, 113, 0.7);
+        }
+
+        footer {
+            margin-top: 30px;
+            background: rgba(3, 5, 10, 0.95);
+            padding: 18px 0 10px;
+            font-size: 12px;
+            color: #ccccdd;
+            box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.9);
+        }
+
+        .footer-small {
+            margin-top: 6px;
+            border-top: 1px solid #333a;
+            padding-top: 6px;
+            text-align: center;
+        }
+
+        /* FLOATING LEAF ANIMATION (background) */
+        .leaf-area {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .leaf {
+            position: absolute;
+            bottom: -60px;
+            width: 32px;
+            height: 32px;
+            background: radial-gradient(circle at 30% 30%, #e9ffb3, #62b35c);
+            border-radius: 0 60% 60% 60%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            opacity: 0.75;
+            transform-origin: center;
+            animation-name: floatLeaf;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .leaf::before {
+            content: "";
+            position: absolute;
+            inset: 8px 13px 8px 8px;
+            border-radius: 50%;
+            border-right: 2px solid rgba(255, 255, 255, 0.6);
+            opacity: 0.7;
+        }
+
+        .leaf:nth-child(1) {
+            left: 5%;
+            animation-duration: 18s;
+            animation-delay: 0s;
+        }
+
+        .leaf:nth-child(2) {
+            left: 18%;
+            width: 26px;
+            height: 26px;
+            animation-duration: 22s;
+            animation-delay: -3s;
+        }
+
+        .leaf:nth-child(3) {
+            left: 32%;
+            width: 30px;
+            height: 30px;
+            animation-duration: 20s;
+            animation-delay: -8s;
+        }
+
+        .leaf:nth-child(4) {
+            left: 48%;
+            animation-duration: 24s;
+            animation-delay: -5s;
+        }
+
+        .leaf:nth-child(5) {
+            left: 64%;
+            width: 28px;
+            height: 28px;
+            animation-duration: 19s;
+            animation-delay: -10s;
+        }
+
+        .leaf:nth-child(6) {
+            left: 78%;
+            animation-duration: 23s;
+            animation-delay: -6s;
+        }
+
+        .leaf:nth-child(7) {
+            left: 90%;
+            width: 24px;
+            height: 24px;
+            animation-duration: 21s;
+            animation-delay: -12s;
+        }
+
+        @keyframes floatLeaf {
+            0% {
+                transform: translateY(0) translateX(0) rotate(-10deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.85;
+            }
+
+            50% {
+                transform: translateY(-50vh) translateX(20px) rotate(20deg);
+            }
+
+            100% {
+                transform: translateY(-110vh) translateX(-25px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* Bring main content above leaves */
+        header,
+        main,
+        footer {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* ======== MENU TOGGLE (MOBILE) ======== */
+        .menu-toggle {
+            display: none;
+            width: 34px;
+            height: 30px;
+            border-radius: 6px;
+            border: 1px solid #c5ff71aa;
+            background: transparent;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 18px;
+            height: 2px;
+            background: #c5ff71;
+            position: relative;
+        }
+
+        .menu-toggle span::before,
+        .menu-toggle span::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            width: 18px;
+            height: 2px;
+            background: #c5ff71;
+        }
+
+        .menu-toggle span::before {
+            top: -6px;
+        }
+
+        .menu-toggle span::after {
+            top: 6px;
+        }
+
+        .menu-toggle.active span {
+            background: transparent;
+        }
+
+        .menu-toggle.active span::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+
+        .menu-toggle.active span::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+
+        @media (max-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            /* mobile nav */
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav {
+                align-items: center;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                margin-top: 8px;
+                background: rgba(5, 10, 20, 0.98);
+                border-radius: 12px;
+                padding: 10px 12px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                min-width: 180px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+                display: none;
+                /* default hidden */
+                z-index: 70;
+            }
+
+            .nav-links a {
+                width: 100%;
+                padding: 6px 10px;
+            }
+
+            .nav-links.open {
+                display: flex;
+                /* show when toggle active */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU BACKDROP (BLACK BG WHEN OPEN) -->
+    <div class="nav-backdrop"></div>
+
+    <div class="page-overlay">
+
+        <!-- FLOATING LEAVES BACKGROUND -->
+        <div class="leaf-area">
+            <span class="leaf"></span>
+            <span class="leaf"></span>
+            <span class="leaf"></span>
+            <span class="leaf"></span>
+            <span class="leaf"></span>
+            <span class="leaf"></span>
+            <span class="leaf"></span>
+        </div>
+
+        <!-- HEADER -->
+        <header>
+            <div class="container nav">
+                <div class="nav-left">
+                    <div class="logo-circle"><img src="bg6.jpg" alt="Nano Icon"></div>
+                    <div class="logo-text">
+                        Nano Technology in Agriculture
+                        <span>Nano Fertilizers: A Promise for Future</span>
+                    </div>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <button class="menu-toggle" type="button" aria-label="Toggle navigation">
+                    <span></span>
+                </button>
+
+                <nav class="nav-links">
+                    <a href="index.html" class="active">Home</a>
+                    <a href="farmer-guide.html">Farmer Guide</a>
+                    <a href="algorithms.html">Algorithms</a>
+                    <a href="resources-contact.html">Resources</a>
+                    <a href="Contact.html">Contact</a>
+                    <a href="nano-agri-notes.pdf">Notes</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <main>
+            <section class="hero">
+                <div class="container hero-grid">
+                    <div>
+                        <h1 class="hero-title">
+                            Nano Fertilizers – <span>A Promise for Future</span>
+                        </h1>
+                        <p class="hero-sub">
+                            This portal is designed for farmers and students to understand how
+                            nano-fertilizers can increase productivity, protect soil health, and reduce
+                            the subsidy burden on government – all with ecological safety.
+                        </p>
+                        <ul class="hero-list">
+                            <li>Department: Agriculture &amp; Cooperation Department</li>
+                            <li>Users: Farmers, Extension Workers, Agri Students</li>
+                            <li>Focus: Efficient, safe, and smart use of nanofertilizers</li>
+                        </ul>
+                        <div class="btn-row">
+                            <button class="btn btn-primary" id="btnFarmer">Open Farmer Module</button>
+                            <button class="btn btn-outline" id="btnNotes">Read Full Nano Notes</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="card-droplet">
+                            <h3>Challenge Context</h3>
+                            <small>Why nano-fertilizers are needed?</small>
+                            <p style="font-size:13px; margin-bottom:6px;">
+                                Conventional fertilizers are often overused, leading to:
+                            </p>
+                            <ul>
+                                <li>High chemical residues in soil and water</li>
+                                <li>Health concerns for humans, animals and ecology</li>
+                                <li>Low nutrient-use efficiency and wastage</li>
+                                <li>Heavy subsidy burden on government</li>
+                            </ul>
+                            <p style="font-size:13px; margin-top:6px;">
+                                Nanofertilizers, also called <strong>magic bullets</strong>, provide high efficiency
+                                with low residues due to their large surface area and controlled release behaviour.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- EXPECTED OUTCOME & IMPACT -->
+            <section>
+                <div class="container">
+                    <h2 class="section-title">Expected Outcomes & Impact</h2>
+                    <p class="section-subtitle">
+                        Ye project farmers ko scientifically guide karega ki nano-fertilizers ka
+                        sahi istemal kaise karein – taki unki income bhi bade aur environment bhi safe rahe.
+                    </p>
+
+                    <div class="grid-2">
+                        <div class="card-droplet">
+                            <h3>Expected Outcomes</h3>
+                            <ul>
+                                <li>Farmers can use nano-fertilizers more effectively for crop production.</li>
+                                <li>Minimum chemical residue in soil and crops.</li>
+                                <li>Improved soil health and long-term productivity.</li>
+                                <li>Higher net returns due to better input-use efficiency.</li>
+                            </ul>
+                        </div>
+
+                        <div class="card-droplet">
+                            <h3>Impact</h3>
+                            <ul>
+                                <li>Increase in farmers' income with optimized fertilizer usage.</li>
+                                <li>Reduced fertilizer subsidy load on government.</li>
+                                <li>Ecological safety and healthier environment.</li>
+                                <li>Benefits for entire mankind through sustainable agriculture.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="container">
+                <p style="text-align:center;">
+                    Developed for PID002 – Nano Fertilizers: A Promise for Future
+                </p>
+                <div class="footer-small">
+                    Always verify with latest government guidelines before real field application.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- INTERNAL JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // hero buttons navigation
+            var btnFarmer = document.getElementById('btnFarmer');
+            if (btnFarmer) {
+                btnFarmer.addEventListener('click', function () {
+                    window.location.href = 'farmer-guide.html';
+                });
+            }
+
+            var btnNotes = document.getElementById('btnNotes');
+            if (btnNotes) {
+                btnNotes.addEventListener('click', function () {
+                    // Nav ke Notes link jaisa hi PDF open hoga
+                    window.location.href = 'nano-agri-notes.pdf';
+                });
+            }
+
+            // MOBILE NAV TOGGLE
+            var menuToggle = document.querySelector('.menu-toggle');
+            var navLinks = document.querySelector('.nav-links');
+            var navBackdrop = document.querySelector('.nav-backdrop');
+
+            if (menuToggle && navLinks && navBackdrop) {
+                // Toggle open/close on button click
+                menuToggle.addEventListener('click', function (e) {
+                    e.stopPropagation(); // click bubble nahi karega
+                    var isOpen = navLinks.classList.toggle('open');
+
+                    if (isOpen) {
+                        menuToggle.classList.add('active');
+                        navBackdrop.classList.add('show');
+                    } else {
+                        menuToggle.classList.remove('active');
+                        navBackdrop.classList.remove('show');
+                    }
+                });
+
+                // kisi link pe click karte hi menu band ho jaye
+                var links = navLinks.querySelectorAll('a');
+                for (var i = 0; i < links.length; i++) {
+                    links[i].addEventListener('click', function () {
+                        navLinks.classList.remove('open');
+                        menuToggle.classList.remove('active');
+                        navBackdrop.classList.remove('show');
+                    });
+                }
+
+                // backdrop pe click karne se bhi menu band
+                navBackdrop.addEventListener('click', function () {
+                    navLinks.classList.remove('open');
+                    menuToggle.classList.remove('active');
+                    navBackdrop.classList.remove('show');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

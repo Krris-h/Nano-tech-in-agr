@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Impact & Policy – Nano Fertilizers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #041019 0%, #020509 50%, #000000 100%),
+                url("bg4.jpg") center/cover no-repeat fixed;
+            color:#f5f7fb;
+            line-height:1.6;
+        }
+
+        a { text-decoration:none; color:inherit; }
+
+        .container {
+            width:90%;
+            max-width:1100px;
+            margin:0 auto;
+        }
+
+        header{
+            position:sticky;
+            top:0;
+            z-index:100;
+            background:rgba(3,10,14,0.95);
+            box-shadow:0 2px 16px rgba(0,0,0,0.9);
+            backdrop-filter:blur(14px);
+        }
+
+        .nav-inner{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:10px 0;
+        }
+
+        .nav-left{
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+
+        .logo-circle{
+            width:38px;
+            height:38px;
+            border-radius:50%;
+            background:linear-gradient(135deg,#25d366,#0b8457);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-weight:bold;
+            font-size:18px;
+            color:#fff;
+        }
+
+        .logo-text{
+            font-size:15px;
+            color:#e6f7ff;
+        }
+
+        .logo-text span{
+            display:block;
+            font-size:11px;
+            color:#a9c4ce;
+        }
+
+        nav ul{
+            list-style:none;
+            display:flex;
+            gap:14px;
+            font-size:13px;
+        }
+
+        nav a{
+            padding:6px 12px;
+            border-radius:999px;
+            color:#e6edf7;
+            transition:background 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+
+        nav a:hover{
+            background:rgba(37,211,102,0.18);
+            transform:translateY(-1px);
+            box-shadow:0 0 14px rgba(37,211,102,0.5);
+        }
+
+        nav a.active{
+            background:rgba(197,255,113,0.22);
+            box-shadow:0 0 14px rgba(197,255,113,0.7);
+            color:#eaffb6;
+        }
+
+        main{ padding:40px 0 30px; }
+
+        .section-title{
+            font-size:24px;
+            text-align:center;
+            margin-bottom:8px;
+            text-transform:uppercase;
+            letter-spacing:1px;
+        }
+
+        .section-subtitle{
+            font-size:13px;
+            text-align:center;
+            max-width:720px;
+            margin:0 auto 20px;
+            color:#dbe5f3;
+        }
+
+        .grid-2{
+            display:grid;
+            grid-template-columns:1.1fr 0.9fr;
+            gap:20px;
+            align-items:flex-start;
+        }
+
+        .glass{
+            background:rgba(6,20,24,0.94);
+            border-radius:22px;
+            padding:18px 16px;
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.9),
+                0 0 0 1px rgba(255,255,255,0.11);
+            backdrop-filter:blur(14px);
+            -webkit-backdrop-filter:blur(14px);
+            font-size:14px;
+            border:1px solid rgba(255,255,255,0.2);
+            transition:transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+        }
+
+        .glass:hover{
+            transform:translateY(-4px);
+            box-shadow:
+                0 24px 55px rgba(0,0,0,0.95),
+                0 0 0 1px rgba(197,255,113,0.55);
+            border-color:rgba(197,255,113,0.8);
+        }
+
+        h3{
+            font-size:18px;
+            margin-bottom:8px;
+            color:#c5ff71;
+        }
+
+        h4{
+            font-size:15px;
+            margin-bottom:4px;
+            color:#9df56a;
+        }
+
+        ul{ margin-left:18px; margin-bottom:8px; }
+        li{ margin-bottom:4px; }
+
+        .badge{
+            display:inline-block;
+            font-size:11px;
+            padding:3px 8px;
+            border-radius:999px;
+            background:rgba(37,211,102,0.18);
+            border:1px solid rgba(157,245,106,0.7);
+            color:#9df56a;
+            margin-bottom:6px;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            font-size:13px;
+            margin-top:6px;
+        }
+
+        th,td{
+            padding:6px 8px;
+            border-bottom:1px solid #263544;
+        }
+
+        th{
+            text-align:left;
+            background:rgba(3,14,18,0.9);
+        }
+
+        .note-box{
+            font-size:12px;
+            margin-top:8px;
+            padding:10px 12px;
+            border-radius:16px;
+            background:rgba(3,13,16,0.95);
+            border:1px dashed rgba(197,255,113,0.7);
+        }
+
+        footer{
+            background:rgba(1,7,10,0.95);
+            color:#cbd5e1;
+            padding:14px 0 10px;
+            font-size:12px;
+            text-align:center;
+            box-shadow:0 -8px 26px rgba(0,0,0,0.9);
+        }
+
+        @media(max-width:800px){
+            .grid-2{ grid-template-columns:1fr; }
+            nav ul{
+                flex-wrap:wrap;
+                justify-content:flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container nav-inner">
+        <div class="nav-left">
+            <div class="logo-circle">N</div>
+            <div class="logo-text">
+                Impact & Policy
+                <span>PID002 – Nano Fertilizers</span>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="nano-fertilizers.html">Nano Fertilizers</a></li>
+                <li><a href="farmer-guide.html">Farmer Guide</a></li>
+                <li><a href="impact-policy.html" class="active">Impact & Policy</a></li>
+                <li><a href="resources-contact.html">Resources</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="container">
+        <h2 class="section-title">Impact & Policy View</h2>
+        <p class="section-subtitle">
+            Is page me project ka policy angle, farmer income par impact
+            aur government subsidy saving ko structured way me dikhaya gaya hai.
+        </p>
+
+        <div class="grid-2">
+            <div class="glass">
+                <span class="badge">Impact on Farmers & Ecology</span>
+                <h3>Farmer Income & Soil Health</h3>
+                <ul>
+                    <li>Higher yield due to better nutrient-use efficiency (NUE).</li>
+                    <li>Improved crop quality → better market price / MSP realization.</li>
+                    <li>Reduced number of fertilizer bags per acre → transport & labour saving.</li>
+                    <li>Soil organic matter and microbial life better protected.</li>
+                    <li>Less leaching → groundwater quality improves in long term.</li>
+                </ul>
+
+                <h4>Simple Impact Table (Per Acre Example)</h4>
+                <table>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Conventional</th>
+                        <th>With Nano Fertilizer</th>
+                    </tr>
+                    <tr>
+                        <td>Urea used (kg)</td>
+                        <td>100</td>
+                        <td>60–70</td>
+                    </tr>
+                    <tr>
+                        <td>Average yield (q/acre)</td>
+                        <td>18</td>
+                        <td>20–22</td>
+                    </tr>
+                    <tr>
+                        <td>Net income (Rs)</td>
+                        <td>Baseline</td>
+                        <td>+10–20% higher</td>
+                    </tr>
+                    <tr>
+                        <td>Soil & water pollution</td>
+                        <td>High</td>
+                        <td>Lower</td>
+                    </tr>
+                </table>
+
+                <div class="note-box">
+                    <strong>NOTE:</strong> Table values example ke liye hain.
+                    Real field data state / crop ke hisab se alag ho sakta hai.
+                </div>
+            </div>
+
+            <div class="glass">
+                <span class="badge">Policy / Government Perspective</span>
+                <h3>Subsidy & Scheme Integration</h3>
+                <ul>
+                    <li>Government fertilizers par heavy subsidy deti hai; nano products se per-acre requirement kam ho sakti hai.</li>
+                    <li>Nano fertilizer ko soil health card, PM-Kisan, aur other schemes ke sath integrate kiya ja sakta hai.</li>
+                    <li>Digital tracking (app / portal) se har farmer ka yield & subsidy saving record kiya ja sakta hai.</li>
+                    <li>Approved nano products ki list banakar hi subsidy / incentive di jaye.</li>
+                </ul>
+
+                <h4>Mini Algorithm: Department View</h4>
+                <ul>
+                    <li>1. Register farmers using nano fertilizers.</li>
+                    <li>2. Collect baseline yield & fertilizer use data.</li>
+                    <li>3. Season ke baad new yield & nano use record karein.</li>
+                    <li>4. Har farmer ka <em>income gain</em> aur <em>subsidy saving</em> calculate karein.</li>
+                    <li>5. District/state level par total impact report banayein.</li>
+                </ul>
+
+                <div class="note-box">
+                    Exam conclusion line: “Nano fertilizers help in increasing farmers’ income,
+                    reducing government subsidy burden and protecting the environment, therefore
+                    they fit perfectly into national goals of sustainable and climate-smart agriculture.”
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    Impact & Policy – Nano Fertilizers • Agriculture & Cooperation Department (PID002).
+</footer>
+
+</body>
+</html>

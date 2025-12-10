@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Nano Fertilizers – Detailed Theory</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: #f5f7fb;
+            line-height: 1.6;
+            position: relative;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at top, rgba(3,16,19,0.95) 0%, rgba(2,5,9,0.95) 50%, rgba(0,0,0,0.95) 100%);
+            overflow-x: hidden;
+        }
+
+        /* ===== BACKGROUND SLIDESHOW ===== */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* opacity handled by keyframes for fade effect */
+            opacity: 0;
+            animation: bgSlide 5s infinite linear;
+        }
+
+        @keyframes bgSlide {
+            /* Image 1 fade in */
+            0% {
+                background-image: url("bg1.jpg");
+                opacity: 0;
+            }
+            10% {
+                background-image: url("bg1.jpg");
+                opacity: 0.35;
+            }
+            30% {
+                background-image: url("bg1.jpg");
+                opacity: 0.35;
+            }
+            33% {
+                background-image: url("bg1.jpg");
+                opacity: 0;
+            }
+
+            /* Switch to Image 2 while invisible, then fade in */
+            34% {
+                background-image: url("bg2.jpg");
+                opacity: 0;
+            }
+            44% {
+                background-image: url("bg2.jpg");
+                opacity: 0.35;
+            }
+            63% {
+                background-image: url("bg2.jpg");
+                opacity: 0.35;
+            }
+            66% {
+                background-image: url("bg2.jpg");
+                opacity: 0;
+            }
+
+            /* Switch to Image 3 while invisible, then fade in */
+            67% {
+                background-image: url("bg3.jpg");
+                opacity: 0;
+            }
+            77% {
+                background-image: url("bg3.jpg");
+                opacity: 0.35;
+            }
+            96% {
+                background-image: url("bg3.jpg");
+                opacity: 0.35;
+            }
+            100% {
+                background-image: url("bg3.jpg");
+                opacity: 0;
+            }
+        }
+
+        a { text-decoration: none; color: inherit }
+
+        .container { width: 90%; max-width: 1100px; margin: 0 auto }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(3, 10, 14, 0.95);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(14px);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .nav-left { display: flex; align-items: center; gap: 10px }
+
+        .logo-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25d366, #0b8457);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0 0 12px rgba(37, 211, 102, 0.7);
+        }
+
+        nav ul { list-style: none; display: flex; gap: 14px; font-size: 13px }
+
+        nav a {
+            padding: 6px 12px;
+            border-radius: 999px;
+            transition: .2s;
+        }
+
+        nav a:hover {
+            background: rgba(37, 211, 102, .18);
+            box-shadow: 0 0 14px rgba(37, 211, 102, .5);
+        }
+
+        nav a.active {
+            background: rgba(197,255,113,.22);
+            box-shadow: 0 0 14px rgba(197,255,113,.7);
+        }
+
+        main { padding: 40px 0 30px }
+
+        .section-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 20px;
+            color: #dbe5f3;
+        }
+
+        .glass {
+            background: rgba(6, 20, 24, 0.92);
+            border-radius: 22px;
+            padding: 18px;
+            border: 1px solid rgba(255,255,255,.18);
+            backdrop-filter: blur(14px);
+            margin-bottom: 20px;
+        }
+
+        h3 { color: #c5ff71; margin-bottom: 8px }
+        h4 { color: #9df56a; margin-bottom: 6px }
+
+        ul { margin-left: 18px; margin-bottom: 8px }
+        li { margin-bottom: 5px }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 999px;
+            background: rgba(37, 211, 102, 0.18);
+            border: 1px solid rgba(157,245,106,0.7);
+            color: #9df56a;
+            margin-bottom: 6px;
+        }
+
+        /* ===== IMAGE SPACE ===== */
+        .image-space {
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .image-box {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 4 / 3;
+            border-radius: 16px;
+            border: 1px dashed rgba(197,255,113,0.7);
+            background:
+                radial-gradient(circle at top, rgba(9,40,30,0.9), rgba(3,10,14,0.95)),
+                url("nano-image.jpg") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            color: #d9fdd3;
+            overflow: hidden;
+        }
+
+        .image-caption {
+            font-size: 11px;
+            color: #cbd5e1;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 10px;
+        }
+
+        .tab-btn {
+            border-radius: 999px;
+            border: 1px solid #c5ff71;
+            padding: 6px 12px;
+            font-size: 12px;
+            background: transparent;
+            color: #eaffb6;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab-btn .tab-icon {
+            font-size: 14px;
+        }
+
+        .tab-btn.active {
+            background: #c5ff71;
+            color: #042c18;
+        }
+
+        .tab-content { display: none }
+        .tab-content.active { display: block }
+
+        .pdf-box {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .pdf-btn {
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: #c5ff71;
+            color: #042c18;
+            font-size: 13px;
+            box-shadow: 0 0 18px rgba(197,255,113,.7);
+        }
+
+        footer {
+            background: rgba(1,7,10,.95);
+            text-align: center;
+            padding: 14px;
+            font-size: 12px;
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="container nav-inner">
+        <div class="nav-left">
+            <div class="logo-circle">N</div>
+            <div>
+                Nano Fertilizers Hub
+                <div style="font-size:11px;color:#a9c4ce">Detailed Theory</div>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a class="active">Nano Fertilizers</a></li>
+                <li><a href="farmer-guide.html">Farmer Guide</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+<section class="container">
+
+<h2 class="section-title">Nano Fertilizers</h2>
+<p class="section-subtitle">
+Nano fertilizers act as eco-friendly “magic bullets” delivering nutrients
+efficiently with reduced losses and higher crop response.
+</p>
+
+<div class="glass">
+    <span class="badge">Definition</span>
+    <h3>What are Nano Fertilizers?</h3>
+    <p>
+        Nano fertilizers are nutrient formulations in nano-scale (1–100 nm),
+        engineered for controlled release, higher nutrient-use efficiency,
+        and minimal environmental pollution.
+    </p>
+
+    <div class="image-space">
+        <div class="image-box">
+            <span><img src="bg8.jpg" alt="nano-fertilizers" height="250" width="300"></span>
+        </div>
+        <p class="image-caption">
+            Insert a schematic diagram, field photo, or structure of nano fertilizers here.
+        </p>
+    </div>
+</div>
+
+<div class="glass">
+<span class="badge">Interactive</span>
+<h3>Types, Mechanism & Impact</h3>
+
+<div class="tab-buttons">
+    <button class="tab-btn active" data-tab="types">🧪 Types</button>
+    <button class="tab-btn" data-tab="mechanism">⚙️ Mechanism</button>
+    <button class="tab-btn" data-tab="advantages">✅ Advantages</button>
+    <button class="tab-btn" data-tab="limitations">⚠️ Limitations</button>
+</div>
+
+<div id="types" class="tab-content active">
+<ul>
+<li>Nano-encapsulated fertilizers</li>
+<li>Nano-coated fertilizers</li>
+<li>Nano-chelated micronutrients</li>
+<li>Nanocomposite fertilizers</li>
+</ul>
+</div>
+
+<div id="mechanism" class="tab-content">
+<ul>
+<li>High surface area → better root contact</li>
+<li>Slow & controlled nutrient release</li>
+<li>Stimuli-responsive nutrient delivery</li>
+<li>Reduced fixation and leaching losses</li>
+</ul>
+</div>
+
+<div id="advantages" class="tab-content">
+<ul>
+<li>Higher nutrient-use efficiency (NUE)</li>
+<li>Reduced fertilizer requirement</li>
+<li>Lower environmental pollution</li>
+<li>Improved crop yield & quality</li>
+<li>Lower subsidy burden</li>
+<li>Better soil health</li>
+</ul>
+</div>
+
+<div id="limitations" class="tab-content">
+<ul>
+<li>Higher cost</li>
+<li>Limited long-term data</li>
+<li>Need strict regulation</li>
+<li>Risk of misuse</li>
+</ul>
+</div>
+
+<div class="pdf-box">
+<a href="nano-fertilizers.pdf" class="pdf-btn" target="_blank">
+📄 Download Full Notes (PDF)
+</a>
+</div>
+</div>
+
+</section>
+</main>
+
+<footer>
+Nano Fertilizers – Detailed Theory • Academic & Training Purpose
+</footer>
+
+<script>
+document.querySelectorAll(".tab-btn").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+        document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+    });
+});
+</script>
+
+</body>
+</html>
